@@ -1,0 +1,22 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textareaField({
+	label: "Message returned if a rating is not provided in a review"|t,
+	name: 'incompleteReview',
+	value: settings.incompleteReview,
+	rows: 1,
+}) }}
+
+{{ forms.textareaField({
+	label: "Message returned if someone tries to write two reviews for one product"|t,
+	name: 'duplicateReview',
+	value: settings.duplicateReview,
+	rows: 1,
+}) }}
+
+{{ forms.textareaField({
+	label: "Message returned a review submission is successful"|t,
+	name: 'successfulReview',
+	value: settings.successfulReview,
+	rows: 1,
+}) }}

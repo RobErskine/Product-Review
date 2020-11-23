@@ -1,0 +1,112 @@
+.pending {
+  color: red;
+}
+.approved {
+  color: green;
+}
+#userform {
+  width: 100%;
+}
+
+#userform label {
+  font-weight:bold;
+  margin-bottom: 10px;
+  display: block;
+}
+
+#counter {
+  text-align: right;
+  width: 50%;
+  padding-top: 10px;
+}
+
+hr.halfwidth {
+  width: 50%;
+  border-top: 1px solid #a1a1a1;
+}
+
+#comment{
+  width: 50%;
+  min-height: 300px
+}
+#rating{
+  width: 25%;
+  float: left;
+}
+
+#rating li input {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+#status{
+  width: 25%;
+  float: left;
+  margin-bottom: 20px;
+}
+#status li {
+  text-align: right;
+}
+#status li select {
+  margin-top: 5px;
+}
+
+#delete{
+  text-align: left;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.buttoncontainer {
+  width: 50%;
+}
+.buttoncontainer li{
+  width: 50%;
+  float: left;
+}
+
+.buttoncontainer .submitbutton .btn.submit{
+  color: #fff;
+  background-image: -webkit-linear-gradient(#5286d9, #4B7BC7);
+  background-image: -moz-linear-gradient(#5286d9, #4B7BC7);
+  background-image: -ms-linear-gradient(#5286d9, #4B7BC7);
+  background-image: -o-linear-gradient(#5286d9, #4B7BC7);
+  background-image: linear-gradient(#5286d9, #4B7BC7);
+}
+
+.buttoncontainer .submitbutton .btn.submit:not(.disabled):not(.inactive):hover,.buttoncontainer .submitbutton .btn.submit:not(.disabled):not(.inactive).hover {
+  background-image: -webkit-linear-gradient(#4B7BC7, #395D96);
+  background-image: -moz-linear-gradient(#4B7BC7, #395D96);
+  background-image: -ms-linear-gradient(#4B7BC7, #395D96);
+  background-image: -o-linear-gradient(#4B7BC7, #395D96);
+  background-image: linear-gradient(#4B7BC7, #395D96);
+}
+
+
+
+.buttoncontainer .deletebutton .delete{
+  padding-top: 10px;
+  color: #da5a47;
+  text-decoration: underline;
+}
+
+.buttoncontainer .deletebutton .delete:not(.disabled):not(.inactive):hover, .buttoncontainer .deletebutton .btn.delete:not(.disabled):not(.inactive).hover {
+  color: #b34b3b;
+}
+
+.buttoncontainer .deletebutton a#delete {
+  margin-top: 0;
+  float: right;
+}
+
+.clear{
+  clear: both;
+}
+.full-width{
+  width: 100%;
+}
+
+.caret {
+  font-size: 8px;
+}

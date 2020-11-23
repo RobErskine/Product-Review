@@ -1,0 +1,55 @@
+{% extends "_layouts/cp" %}
+
+{% includeCssResource 'productreview/css/main.css' %}
+{% includeJsResource 'productreview/js/main.js' %}
+
+{% import "_includes/forms" as forms %}
+
+{% set title = 'Edit Review' %}
+{% set product = craft.request.param('id') %}
+{% block main %}
+
+<form id="userform" method="post" accept-charset="UTF-8" data-saveshortcut data-confirm-unload>
+    <input type="hidden" name="action" value="productReview/editReview">
+    <input type="hidden" name="redirect" value="{{craft.request.url}}?id={{product}}">
+    <input type="hidden" name="id" value="{{product}}">
+    <ul>
+      <li><label for="comment">Review</label></li>
+      <li><textarea id="comment" name="comment" maxlength="9999">{% if craft.productReview.getProductComment(product) %}{{craft.productReview.getProductComment(product)}} {% else%} {% endif %}</textarea></li>
+      <div class="full-width">
+        <div id="counter"><b>Character Count:</b>
+          <span class="current">0</span> /
+          <span class="max">9999</span>
+        </div>
+        <hr class="halfwidth">
+        <div id="rating">
+          <li><label for="rating">Rating (1-5)</label></li>
+          <li>
+            <input {% if craft.productReview.getProductRating(product) == '1' %} checked {% endif %} type="radio" name="rating" value="1">1
+            <input {% if craft.productReview.getProductRating(product) == '2' %} checked {% endif %} type="radio" name="rating" value="2">2
+            <input {% if craft.productReview.getProductRating(product) == '3' %} checked {% endif %} type="radio" name="rating" value="3">3
+            <input {% if craft.productReview.getProductRating(product) == '4' %} checked {% endif %} type="radio" name="rating" value="4">4
+            <input {% if craft.productReview.getProductRating(product) == '5' %} checked {% endif %} type="radio" name="rating" value="5">5
+          </li>
+        </div>
+        <div id="status">
+          <li><label for="rating">Status</label></li>
+          <li>
+            <select name="status">
+              <option {% if craft.productReview.getReviewStatus(product) == 'pending' %} selected {% endif %} value="pending">Pending</option>
+              <option {% if craft.productReview.getReviewStatus(product) == 'approved' %} selected {% endif %} value="approved">Approved</option>
+            </select>
+          </li>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="buttoncontainer">
+        <li class="submitbutton"><input class="btn submit" type="submit" value="{{ 'Submit'|t }}"></li>
+        <li class="deletebutton"><a id="delete" class="delete" href="{{ actionUrl('productReview/deleteReview', { id: product}) }}" class="">Delete this review</a></li>
+      </div>
+      <div class="clear"></div>
+    </ul>
+</form>
+
+
+{% endblock %}

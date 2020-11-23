@@ -1,0 +1,136 @@
+{% extends "_layouts/cp" %}
+
+{% set title = "Product Reviews"|t %}
+
+{% includeCssResource 'productreview/css/main.css' %}
+{% includeJsResource 'productreview/js/main.js' %}
+
+{% set sort = craft.request.param('sort') %}
+{% set order = craft.request.param('order') %}
+
+{% if sort %}
+    {% if sort == "user"%}
+      {% if order %}
+        {% if order == "asc" %}
+          {% set reviews = craft.productReview.reviewsByUserAsc %}
+        {% else %}
+          {% set reviews = craft.productReview.reviewsByUserDesc %}
+        {% endif %}
+      {% else %}
+        {% set reviews = craft.productReview.reviewsByUserAsc %}
+      {% endif %}
+    {% endif %}
+    {% if sort == "product"%}
+      {% if order %}
+        {% if order == "asc" %}
+          {% set reviews = craft.productReview.reviewsByProductAsc %}
+        {% else %}
+          {% set reviews = craft.productReview.reviewsByProductDesc %}
+        {% endif %}
+      {% else %}
+        {% set reviews = craft.productReview.reviewsByProductAsc %}
+      {% endif %}
+    {% endif %}
+    {% if sort == "rating"%}
+      {% if order %}
+        {% if order == "asc" %}
+          {% set reviews = craft.productReview.reviewsByRatingAsc %}
+        {% else %}
+          {% set reviews = craft.productReview.reviewsByRatingDesc %}
+        {% endif %}
+      {% else %}
+        {% set reviews = craft.productReview.reviewsByRatingAsc %}
+      {% endif %}
+    {% endif %}
+    {% if sort == "date"%}
+      {% if order %}
+        {% if order == "asc" %}
+          {% set reviews = craft.productReview.reviewsByDateAsc %}
+        {% else %}
+          {% set reviews = craft.productReview.reviewsByDateDesc %}
+        {% endif %}
+      {% else %}
+        {% set reviews = craft.productReview.reviewsByDateAsc %}
+      {% endif %}
+    {% endif %}
+    {% if sort == "status"%}
+      {% if order %}
+        {% if order == "asc" %}
+          {% set reviews = craft.productReview.reviewsByStatusAsc %}
+        {% else %}
+          {% set reviews = craft.productReview.reviewsByStatusDesc %}
+        {% endif %}
+      {% else %}
+        {% set reviews = craft.productReview.reviewsByStatusAsc %}
+      {% endif %}
+    {% endif %}
+
+{% else %}
+
+  {% set reviews = craft.productReview.reviews %}
+
+{% endif %}
+
+{% block content %}
+
+        {% if reviews %}
+        <table class="data fullwidth">
+            <thead>
+                <tr>
+                    <th>{{ "User Id"|t }} <a class="caret" href="{{ siteUrl }}admin/productreview?sort=user&order=asc">&#9650;</a> <a class="caret" href="{{ siteUrl }}admin/productreview?sort=user&order=desc">&#9660;</a></th>
+                    <th>{{ "Product Id"|t }} <a class="caret" href="{{ siteUrl }}admin/productreview?sort=product&order=asc">&#9650;</a> <a class="caret" href="{{ siteUrl }}admin/productreview?sort=product&order=desc">&#9660;</a></th>
+                    <th>{{ "Comment"|t}}</th>
+                    <th>{{ "Rating"|t}} <a class="caret" href="{{ siteUrl }}admin/productreview?sort=rating&order=asc">&#9650;</a> <a class="caret" href="{{ siteUrl }}admin/productreview?sort=rating&order=desc">&#9660;</a></th>
+                    <th>{{ "Date"|t}} <a class="caret" href="{{ siteUrl }}admin/productreview?sort=date&order=asc">&#9650;</a> <a class="caret" href="{{ siteUrl }}admin/productreview?sort=date&order=desc">&#9660;</a></th>
+                    <th>{{ "Status"|t}} <a class="caret" href="{{ siteUrl }}admin/productreview?sort=status&order=asc">&#9650;</a> <a class="caret" href="{{ siteUrl }}admin/productreview?sort=status&order=desc">&#9660;</a></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+            {% for review in reviews %}
+                <tr>
+                    <td>
+                      {{review.userId}}
+                    </td>
+                    <td>
+                      {{review.productId}}
+                    </td>
+                    <td>
+                      {% if review.comment != "" %}
+                      {{review.comment}}
+                      {% endif %}
+                    </td>
+                    <td>
+                      {{review.rating}}
+                    </td>
+                    <td>
+                      {{review.commentDate}}
+                    </td>
+                    <td class="{{review.status}}">
+                      {{review.status}}
+                    </td>
+                    <td>
+                      {% if review.status == "pending" %}
+                      <a href="{{ actionUrl('productReview/approveReview', { id: review.id}) }}" class="">Approve This Review</a>
+                      {% else %}
+                      &nbsp;
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="productReview/edit/index.html?id={{review.id}}" class="">Edit</a>
+                    </td>
+                    <td>
+                      <a class="delete" href="{{ actionUrl('productReview/deleteReview', { id: review.id}) }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        No reviews yet.
+        {% endif %}
+
+{% endblock %}
