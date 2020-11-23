@@ -1,5 +1,8 @@
 # Product Reviews
 
+Craft 2 plugin for leaving reviews on entries.
+
+Disclaimer: this was originally developed by hellobonfire.com and [was hosted on their site](https://www.hellobonfire.com/index.php?p=product/product-reviews-plugin-for-craft), however it no longer exists. I have cloned this plugin from one of my older legacy projects and hosted it here for continuity's sake.
 ## Installation
 
 Our goal with plugin development is to make including our plugins as easy as possible for the end user, and this plugin is just about as easy as it gets. Once you’ve downloaded the file you can install it like any other Craft plugin. Simply drag the “productreview” folder into your Craft plugin folder, go to the admin settings page, then click the install button next to Product Reviews. Once it's installed you should include this in your product entry template so that users can submit reviews:
